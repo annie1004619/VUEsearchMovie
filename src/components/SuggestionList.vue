@@ -1,25 +1,39 @@
 <template>
   <ul v-show="suggestion.length !== 0">
-    <li v-for="(item,idx) in list" :key="idx">{{item.title}}</li>
+    <li
+      v-for="(item, index) in list"
+      :key="index"
+      :class="{ 'selected-item': selectedIndex === index }"
+      @mousedown="onChangeSelectedIndex(index)"
+    >
+      <div></div>
+      {{ item.title }}
+    </li>
   </ul>
 </template>
 
 <script>
 export default {
-  props:{
-    suggestion: Array
+  props: {
+    suggestion: Array,
+    selectedIndex: Number,
   },
-  data(){
-    return{
-      list: this.$props.suggestion
-    }
+  data() {
+    return {
+      list: this.$props.suggestion,
+    };
   },
-  watch:{
-    suggestion(){
-      this.list = this.$props.suggestion
-    }
-  }
-}
+  watch: {
+    suggestion() {
+      this.list = this.$props.suggestion;
+    },
+  },
+  methods: {
+    onChangeSelectedIndex(index) {
+      this.$emit("onChangeSelectedIndex", index);
+    },
+  },
+};
 </script>
 
 <style scoped>
@@ -30,14 +44,28 @@ ul {
   margin: 20px 0;
   padding: 20px 0;
   border-radius: 20px;
-    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 }
-li{
+li {
   line-height: 50px;
-  padding: 0 100px;
   height: 50px;
+  display: flex;
 }
-li:hover{
-  background:#f3f3f3;
+li:hover {
+  background: #f3f3f3;
+}
+li div {
+  width: 5px;
+  height: 100%;
+  margin-right: 45px;
+}
+.selected-item {
+  background: #f3f3f3;
+}
+.selected-item div {
+  background: rgb(26, 115, 232);
+  width: 5px;
+  height: 100%;
+  border-radius: 0 3px 3px 0;
 }
 </style>
