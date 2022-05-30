@@ -1,24 +1,4 @@
-# searchpage
+## 영화 검색 페이지 구현하기
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 검색어를 입력하면 검색어를 기준으로 서버에 요청을 하고, 받아서 검색어 목록을 보여준다.
+- 검색어를 선택하거나 엔터키를 누르면 검색어에 해당하는 영화들을 검색한다.
